@@ -1,0 +1,34 @@
+package negocio;
+
+import dao.PropiedadDAO;
+import datos.Propiedad;
+
+public class PropiedadABM {
+	public static PropiedadABM instance;
+	
+	private PropiedadABM() {}
+	
+	public static PropiedadABM getInstance() {
+		if(instance == null) {
+			instance = new PropiedadABM();
+		}
+		return instance;
+	}
+	
+	public int agregar(Propiedad Propiedad) {
+		return PropiedadDAO.getInstance().agregar(Propiedad);
+	}
+	
+	public void modificar(Propiedad Propiedad) {
+		PropiedadDAO.getInstance().actualizar(Propiedad);
+	}
+	
+	public void eliminar(Propiedad Propiedad) {
+		PropiedadDAO.getInstance().eliminar(Propiedad);
+	}
+	
+	public void traer(int idPropiedad) {
+		PropiedadDAO.getInstance().traer(idPropiedad);
+	}
+	
+}

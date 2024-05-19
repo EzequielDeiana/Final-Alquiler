@@ -1,0 +1,15 @@
+package datos;
+
+public class Casa extends Propiedad{
+	private boolean tienePatio;
+	
+	public Casa() {}
+
+	public Casa(boolean tienePatio ,double precioBase, String direccion) {
+		super(precioBase, direccion);
+		this.tienePatio = tienePatio;
+	}
+	
+	
+	
+}

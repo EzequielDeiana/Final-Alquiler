@@ -1,0 +1,7 @@
+package datos;
+
+public class Departamento extends Propiedad{
+	private int cantidadAmbientes;
+	private int nroPiso;
+	private boolean tieneAscensor;
+}

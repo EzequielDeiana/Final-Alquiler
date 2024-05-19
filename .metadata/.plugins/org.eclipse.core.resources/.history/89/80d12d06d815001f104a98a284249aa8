@@ -1,0 +1,19 @@
+package datos;
+
+public abstract class Propiedad {
+	protected int idPropiedad;
+	protected double precioBase;
+	protected String direccion;
+	
+	public Propiedad() {};
+	
+	public Propiedad(int idPropiedad, double precioBase, String direccion) {
+		super();
+		this.idPropiedad = idPropiedad;
+		this.precioBase = precioBase;
+		this.direccion = direccion;
+	}
+	
+	
+	
+}

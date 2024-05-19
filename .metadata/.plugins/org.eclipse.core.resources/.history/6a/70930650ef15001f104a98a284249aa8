@@ -1,0 +1,23 @@
+package test;
+
+import datos.Alquiler;
+import datos.Propiedad;
+
+import negocio.AlquilerABM;
+import negocio.PropiedadABM;
+
+public class TestOO2Tema1 {
+
+	public static void main(String[] args) {
+		/*
+		System.out.println("CU1\n");
+		System.out.println(PropiedadABM.getInstance().traerPropiedad());
+		System.out.println("CU2\n");
+		System.out.println(AlquilerABM.getInstance().traer(1));
+		System.out.println("CU3\n");
+		System.out.println(PropiedadABM.getInstance().traerPropiedad(true));
+		*/
+		System.out.println("CU4\n");
+	}
+
+}

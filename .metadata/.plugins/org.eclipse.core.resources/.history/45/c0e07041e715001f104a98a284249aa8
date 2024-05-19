@@ -1,0 +1,15 @@
+package test;
+
+import datos.Alquiler;
+import datos.Propiedad;
+
+import negocio.AlquilerABM;
+import negocio.PropiedadABM;
+
+public class TestOO2Tema1 {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

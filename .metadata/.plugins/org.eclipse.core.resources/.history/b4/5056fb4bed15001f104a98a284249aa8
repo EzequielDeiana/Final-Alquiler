@@ -1,0 +1,116 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import datos.Propiedad;
+
+public class PropiedadDAO {
+	protected static Session session;
+	protected Transaction transaction;
+	public static PropiedadDAO instance;
+
+	public static PropiedadDAO getInstance() {
+		if (instance == null) {
+			instance = new PropiedadDAO();
+		}
+		return instance;
+	}
+
+	protected void iniciaOperacion() throws HibernateException {
+		session = HibernateUtil.getSessionFactory().openSession();
+		transaction = session.beginTransaction();
+	}
+
+	protected void manejaExcepcion(HibernateException he) throws HibernateException {
+		transaction.rollback();
+		throw new HibernateException("ERROR en la capa de acceso a datos", he);
+	}
+
+	public int agregar(Propiedad objeto) throws HibernateException {
+		int id = 0;
+
+		try {
+			iniciaOperacion();
+			id = (int) session.save(objeto);
+			transaction.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+
+		return id;
+	}
+
+	public void actualizar(Propiedad objeto) throws HibernateException {
+		try {
+			iniciaOperacion();
+			session.update(objeto);
+			transaction.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+	}
+
+	public void eliminar(Propiedad objeto) {
+		try {
+			iniciaOperacion();
+			session.delete(objeto);
+			transaction.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+	}
+
+	public Propiedad traer(int idObjeto) {
+		Propiedad objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Propiedad) session.get(Propiedad.class, idObjeto);
+		} finally {
+			session.close();
+		}
+		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Propiedad> traerPropiedad(){
+		List<Propiedad> lista = new ArrayList<Propiedad>();
+		
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("FROM Propiedad").list();
+		} finally {
+			session.close();
+		}
+		
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Propiedad> traerPropiedad(boolean tieneAscensor){
+		List<Propiedad> lista = new ArrayList<Propiedad>();
+		
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("FROM Propiedad p inner join fetch Departamento d where d.tieneAscensor=" + tieneAscensor).list();
+		} finally {
+			session.close();
+		}
+		
+		return lista;
+	}
+
+}

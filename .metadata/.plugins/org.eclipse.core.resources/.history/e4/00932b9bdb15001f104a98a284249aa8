@@ -1,0 +1,30 @@
+package dao;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class AlquilerDAO {
+	protected static Session session;
+	protected Transaction transaction;
+	public static AlquilerDAO instance;
+	
+	public static AlquilerDAO getInstance() {
+		if(instance == null) {
+			instance = new AlquilerDAO();
+		}
+		return instance;
+	}
+
+	protected void iniciaOperacion() throws HibernateException {
+		session = HibernateUtil.getSessionFactory().openSession();
+		transaction = session.beginTransaction();
+	}
+
+	protected void manejaExcepcion(HibernateException he) throws HibernateException {
+		transaction.rollback();
+		throw new HibernateException("ERROR en la capa de acceso a datos", he);
+	}
+	
+	
+}

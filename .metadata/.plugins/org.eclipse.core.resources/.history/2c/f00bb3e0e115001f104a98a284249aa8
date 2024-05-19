@@ -1,0 +1,26 @@
+package negocio;
+
+import dao.AlquilerDAO;
+import datos.Alquiler;
+
+public class AlquilerABM {
+	public static AlquilerABM instance;
+	
+	private AlquilerABM() {}
+	
+	public static AlquilerABM getInstance() {
+		if(instance == null) {
+			instance = new AlquilerABM();
+		}
+		return instance;
+	}
+	
+	public int agregar(Alquiler alquiler) {
+		return AlquilerDAO.getInstance().agregar(alquiler);
+	}
+	
+	public void actualizar(Alquiler alquiler) {
+		AlquilerDAO.getInstance().actualizar(alquiler);
+	}
+	
+}
