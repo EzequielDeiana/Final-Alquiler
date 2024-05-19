@@ -1,8 +1,10 @@
 package dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -79,6 +81,7 @@ public class AlquilerDAO {
 		try {
 			iniciaOperacion();
 			objeto = (Alquiler) session.get(Alquiler.class, id);
+			Hibernate.initialize(objeto.getPropiedad());
 		} finally {
 			session.close();
 		}
@@ -87,11 +90,14 @@ public class AlquilerDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Alquiler> traerAlquiler(){
-		List<Alquiler> lista = new ArrayList<Alquiler>();
+		List<Alquiler> lista = null;
 		
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("FROM datos.Alquiler").list();
+			lista = session.createQuery("FROM Alquiler").list();
+			for (Alquiler alquiler : lista) {
+				Hibernate.initialize(alquiler.getPropiedad());
+			}
 		} finally {
 			session.close();
 		}
@@ -99,5 +105,9 @@ public class AlquilerDAO {
 		
 		return lista;
 	}
+	
+	
+	
+	
 
 }

@@ -35,24 +35,12 @@ public class PropiedadABM {
 		return PropiedadDAO.getInstance().traer(idPropiedad);
 	}
 	
-	public List<Propiedad> traer() {
-		return PropiedadDAO.getInstance().traerPropiedad();
-	}
-	
 	public List<Propiedad> traerPropiedad() {
 		return PropiedadDAO.getInstance().traerPropiedad();
 	}
 	
-	public List<Propiedad> traerPropiedad(boolean tieneAscensor){
-		List<Propiedad> lista = new ArrayList<Propiedad>();
-		
-		for(Propiedad p: traer()) {
-			if( p instanceof Departamento && ((Departamento) p).isTieneAscensor()) {
-				lista.add(p);
-			}
-		}
-		
-		return lista;
+	public List<Propiedad> traerPropiedad(boolean tieneAscensor){	
+		return PropiedadDAO.getInstance().traerPropiedad(tieneAscensor);
 	}
 	
 	

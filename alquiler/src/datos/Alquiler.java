@@ -65,11 +65,11 @@ public class Alquiler {
 	@Override
 	public String toString() {
 		return "Alquiler [idAlquiler=" + idAlquiler + ", fechaDesde=" + fechaDesde
-				+ ", fechaHasta=" + fechaHasta + ", cantidadNoches=" + cantidadNoches + ", propiedad=" + PropiedadABM.getInstance().traer(idAlquiler) + "]";
+				+ ", fechaHasta=" + fechaHasta + ", cantidadNoches=" + cantidadNoches + "]\n";
 	}
 	
 	public double precioFinal() {
-		return (double)this.cantidadNoches * PropiedadABM.getInstance().traer(idAlquiler).precioPorNoche();
+		return (double)this.cantidadNoches * propiedad.precioPorNoche();
 	}
 	
 }

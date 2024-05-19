@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -87,7 +86,7 @@ public class PropiedadDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Propiedad> traerPropiedad(){
-		List<Propiedad> lista = new ArrayList<Propiedad>();
+		List<Propiedad> lista = null;
 		
 		try {
 			iniciaOperacion();
@@ -105,7 +104,9 @@ public class PropiedadDAO {
 		
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from datos.Propiedad p inner join fetch datos.Departamento d where d.tieneAscensor="+tieneAscensor).list();
+			lista = session.createQuery("from Departamento d where d.tieneAscensor= :tieneAscensor", Propiedad.class)
+					.setParameter("tieneAscensor", tieneAscensor)
+					.list();
 		} finally {
 			session.close();
 		}

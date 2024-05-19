@@ -2,6 +2,7 @@ package test;
 
 import java.time.LocalDate;
 
+import datos.Alquiler;
 import negocio.AlquilerABM;
 import negocio.PropiedadABM;
 
@@ -10,9 +11,14 @@ public class TestOO2Tema1 {
 	public static void main(String[] args) {
 		
 		System.out.println("\nCU1\n" + PropiedadABM.getInstance().traerPropiedad());
-		System.out.println("\nCU2\n" + AlquilerABM.getInstance().traer(1));
+		
+		Alquiler temporal = AlquilerABM.getInstance().traer(1);
+		System.out.println("\nCU2\n" + temporal + " " + temporal.getPropiedad());
+		
 		System.out.println("\nCU3\n" + PropiedadABM.getInstance().traerPropiedad(true));
+		
 		System.out.println("\nCU4\n" + AlquilerABM.getInstance().calcularPrecioFinal(AlquilerABM.getInstance().traer(1)));
+		
 		System.out.println("\nCU5\n" + AlquilerABM.getInstance().calcularPrecioFinal(LocalDate.of(2022, 3, 2), LocalDate.of(2022, 3, 9)));
 		
 	}

@@ -1,9 +1,12 @@
 package datos;
 
+import java.util.Set;
+
 public abstract class Propiedad {
 	protected int idPropiedad;
 	protected double precioBase;
 	protected String direccion;
+	protected Set<Alquiler> alquileres;
 	
 	public Propiedad() {};
 	
@@ -37,6 +40,14 @@ public abstract class Propiedad {
 		this.direccion = direccion;
 	}
 	
+	public Set<Alquiler> getAlquileres() {
+		return alquileres;
+	}
+
+	public void setAlquileres(Set<Alquiler> alquileres) {
+		this.alquileres = alquileres;
+	}
+
 	protected abstract double precioPorNoche();
 	
 	@Override
