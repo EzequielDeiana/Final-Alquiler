@@ -115,9 +115,6 @@ public class AlquilerDAO {
 					.setParameter("desde", fechaDesde)
 					.setParameter("hasta", fechaHasta)
 					.list();
-			for (Alquiler alquiler : lista) {
-				Hibernate.initialize(alquiler.getPropiedad());
-			}
 		} finally {
 			session.close();
 		}

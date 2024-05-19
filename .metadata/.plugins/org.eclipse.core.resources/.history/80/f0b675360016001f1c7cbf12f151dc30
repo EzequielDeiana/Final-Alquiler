@@ -45,9 +45,9 @@ public class AlquilerABM {
 		List<Alquiler> lista = AlquilerDAO.getInstance().traerAlquiler(desde, hasta);
 
 		for (Alquiler alquiler : lista) {
-
-			precio = precio + calcularPrecioFinal(alquiler);
-
+			{
+				precio = precio + calcularPrecioFinal(alquiler);
+			}
 		}
 		return precio;
 	}

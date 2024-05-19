@@ -106,24 +106,7 @@ public class AlquilerDAO {
 		return lista;
 	}
 	
-	public List<Alquiler> traerAlquiler(LocalDate fechaDesde, LocalDate fechaHasta){
-		List<Alquiler> lista = null;
-		
-		try {
-			iniciaOperacion();
-			lista = session.createQuery("from Alquiler a where a.fechaDesde>=:desde OR a.fechaHasta<=:hasta", Alquiler.class)
-					.setParameter("desde", fechaDesde)
-					.setParameter("hasta", fechaHasta)
-					.list();
-			for (Alquiler alquiler : lista) {
-				Hibernate.initialize(alquiler.getPropiedad());
-			}
-		} finally {
-			session.close();
-		}
-		
-		return lista;
-	}
+	
 	
 	
 

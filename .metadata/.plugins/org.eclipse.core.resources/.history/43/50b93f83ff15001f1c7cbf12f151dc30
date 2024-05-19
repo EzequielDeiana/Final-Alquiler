@@ -111,15 +111,12 @@ public class AlquilerDAO {
 		
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Alquiler a where a.fechaDesde>=:desde OR a.fechaHasta<=:hasta", Alquiler.class)
+			lista = session.createQuery("from Alquiler a where a.fechadesde>=:desde OR a.fechahasta<=:hasta", Alquiler.class)
 					.setParameter("desde", fechaDesde)
 					.setParameter("hasta", fechaHasta)
 					.list();
-			for (Alquiler alquiler : lista) {
-				Hibernate.initialize(alquiler.getPropiedad());
-			}
 		} finally {
-			session.close();
+			// TODO: handle finally clause
 		}
 		
 		return lista;
