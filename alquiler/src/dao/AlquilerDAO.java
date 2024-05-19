@@ -111,7 +111,7 @@ public class AlquilerDAO {
 		
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Alquiler a where a.fechaDesde>=:desde OR a.fechaHasta<=:hasta", Alquiler.class)
+			lista = session.createQuery("from Alquiler a where a.fechaDesde>=:desde AND a.fechaHasta<=:hasta", Alquiler.class)
 					.setParameter("desde", fechaDesde)
 					.setParameter("hasta", fechaHasta)
 					.list();
